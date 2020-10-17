@@ -6,7 +6,7 @@ public class PuginTester : MonoBehaviour {
     [SerializeField] Text outputText;
 
 
-    const string PLUGUIN_NAME = "com.imagecampus.rodrigounitylib";
+    const string PLUGUIN_NAME = "com.imagecampus.superlogger.RCLogger";
     static AndroidJavaClass _pluginClass = null;
     public static AndroidJavaClass PluginClass {
         get {
@@ -28,7 +28,7 @@ public class PuginTester : MonoBehaviour {
     
 
     void SendLog(string msj) {
-        PluginInstace.CallStatic("sendLog", msj);
+        PluginInstace.Call("sendLog", msj);
     }
     string GetLogs() {
         return PluginInstace.Call<string>("getAllLogs");

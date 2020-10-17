@@ -3,7 +3,6 @@ package com.imagecampus.superlogger;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RCLogger {
     private static final String LOGGER_TAG = "RCLogger";
