@@ -21,13 +21,13 @@ public class RCLogger {
 
     private ArrayList<String> allLogs = new ArrayList<String>();
 
-    public void SendLog(String msj) {
+    public void sendLog(String msj) {
         Log.d(GAME_TAG, msj);
         allLogs.add(msj);
     }
 
     private static final String SEPARATOR = "\n";
-    public String GetAllLogs() {
+    public String getAllLogs() {
         String logs = "";
         for (int i = 0; i < allLogs.size(); i++)
             logs += allLogs.get(i) + SEPARATOR;
