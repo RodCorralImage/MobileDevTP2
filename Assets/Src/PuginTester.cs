@@ -25,13 +25,13 @@ public class PuginTester : MonoBehaviour {
             return _pluginInstace;
         }
     }
+    
 
-    string GetInstanceTime() {
-        return PluginInstace.Call<string>("getLocalTime");
+    void SendLog(string msj) {
+        PluginInstace.CallStatic("sendLog", msj);
     }
-
-    string GetFullTime() {
-        return PluginClass.CallStatic<string>("getFullTime");
+    string GetLogs() {
+        return PluginInstace.Call<string>("getAllLogs");
     }
 
     public void TestPluginBtn() {
@@ -41,12 +41,8 @@ public class PuginTester : MonoBehaviour {
             return;
         }
 
-        string localTime = GetInstanceTime();
-        Debug.Log(localTime);
-        string fullTime = GetFullTime();
-        Debug.Log(fullTime);
-        outputText.text = $"local time: {localTime}" +
-            $"\n" +
-            $"full time: {fullTime}";
+        SendLog(Time.time.ToString());
+
+        outputText.text = GetLogs();
     }
 }
