@@ -1,0 +1,3 @@
+include ':SuperLogger'
+include ':app'
+rootProject.name = "RCTools"
