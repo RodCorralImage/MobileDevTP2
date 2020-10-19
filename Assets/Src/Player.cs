@@ -10,10 +10,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
     bool flying = false;
     Rigidbody2D rigid = null;
 
+    Quaternion starterRot = Quaternion.identity;
+    Vector3 starterPos = Vector3.zero;
+
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+    }
+
+    void Start() {
+        starterPos = transform.position;
+        starterRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -52,18 +60,20 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     private void OnTriggerEnter2D(Collider2D collision) {
         Debug.Log("OnTriggerEnter2D " + collision.name);
-        
-        if (flying && collision.GetComponent<Limits>() != null) {
-            RestartGame();
-        }
     }
 
-    void RestartGame() {
-        Debug.Log("Restart");
+    public void RestartGame() {
+        if (!flying)
+            return;
+        transform.SetParent(null);
+        transform.position = starterPos;
+        transform.rotation = starterRot;
+        rigid.velocity = Vector2.zero;
+        rigid.angularVelocity = 0;
+        flying = false;
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData) {
-        Debug.Log("Click");
         if (!flying) {
             Jump();
         }
@@ -74,5 +84,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         transform.SetParent(null);
         rigid.velocity = Vector2.zero;
         rigid.angularVelocity = 0;
+    }
+
+    public void OnGoal() {
+        flying = false;
     }
 }
