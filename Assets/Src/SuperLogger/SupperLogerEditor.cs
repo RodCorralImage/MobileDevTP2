@@ -10,4 +10,7 @@ public class SupperLogerEditor : SupperLogger
     public override string GetAllLogs() {
         return "No estas en Android CARAJO!";
     }
+    public override void ShowLogsWindow() {
+        Debug.Log("ShowLogsWindow()");
+    }
 }

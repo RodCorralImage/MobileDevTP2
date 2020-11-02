@@ -13,5 +13,7 @@ public class PuginTester : MonoBehaviour {
     public void TestPluginBtn() {
         logger.SendLog(Time.time.ToString());
         outputText.text = logger.GetAllLogs();
+
+        logger.ShowLogsWindow();
     }
 }

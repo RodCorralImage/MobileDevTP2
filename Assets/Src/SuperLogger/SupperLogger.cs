@@ -14,5 +14,5 @@ public abstract class SupperLogger
 
     public abstract void SendLog(string msj);
     public abstract string GetAllLogs();
-    //public abstract void ShowLogsWindow();
+    public abstract void ShowLogsWindow();
 }

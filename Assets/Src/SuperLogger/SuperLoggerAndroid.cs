@@ -29,4 +29,20 @@ public class SuperLoggerAndroid : SupperLogger {
     public override string GetAllLogs() {
         return PluginInstace.Call<string>("getAllLogs");
     }
+
+
+
+    public override void ShowLogsWindow() {
+        string msg = "ASD ASD ASD";
+        using (var playerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            AndroidJavaObject activity = playerClass.GetStatic<AndroidJavaObject>("currentActivity");
+            using(var pluginClass = new AndroidJavaClass("com.imagecampus.superlogger.SupperLorggerAlert"))
+            {
+                pluginClass.CallStatic<AndroidJavaObject>("getInstance")
+                    .Call("show", new object[] { activity, msg });
+            }
+        }
+        Debug.Log("SupperLorggerAlert.Show(" + msg + ")");
+    }
 }
