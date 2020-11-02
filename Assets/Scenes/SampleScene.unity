@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 337446839}
   - component: {fileID: 337446841}
   - component: {fileID: 337446840}
+  - component: {fileID: 337446842}
   m_Layer: 5
   m_Name: InitialScreen
   m_TagString: Untagged
@@ -486,6 +487,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 337446837}
   m_CullTransparentMesh: 0
+--- !u!114 &337446842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337446837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d664e4235666641b49222cecee89a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1201,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome to the space
+  m_Text: INITIAL_SCREE_TITLE
 --- !u!222 &1374303516
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2186,6 +2199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 955784526430473066, guid: 6a81a24dc16a85f4bac4cee40256c52c,
+        type: 3}
+      propertyPath: FlyingSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 955784526430473067, guid: 6a81a24dc16a85f4bac4cee40256c52c,
         type: 3}
