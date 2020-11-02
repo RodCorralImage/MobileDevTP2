@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.IO;
 
 public class LocalizationService {
 
@@ -44,8 +45,42 @@ public class LocalizationService {
         LoadTable(currenLang);
     }
 
+    public static void WriteExampleFile() {
+        LocalizedTextNode node = new LocalizedTextNode();
+        node.key = "key";
+        node.texts = new string[SupportedLanuguages.Length];
+        for (int i = 0; i < SupportedLanuguages.Length; i++) {
+            node.texts[i] = SupportedLanuguages[i].ToString();
+        }
+        LocalizedTextNodeList nodeList = new LocalizedTextNodeList();
+        nodeList.nodes = new LocalizedTextNode[1] {
+            node
+        };
+        string txt = JsonUtility.ToJson(nodeList);
+        string path = Path.Combine(Application.dataPath, "Resources", FILE_NAME + ".json");
+        Debug.Log("path: " + path);
+        Debug.Log("txt: " + txt);
+        File.WriteAllText(path, txt);
+    }
+
     void LoadTable(SystemLanguage lang) {
         var jsonTextFile = Resources.Load<TextAsset>(FILE_NAME);
+        LocalizedTextNodeList nodes = JsonUtility.FromJson<LocalizedTextNodeList>(jsonTextFile.text);
+
+        //busca el indice del lang
+        int idx = 0;
+        for (int i = 0; i < SupportedLanuguages.Length; i++) {
+            if (lang == SupportedLanuguages[i]) {
+                idx = i;
+                break;
+            }
+        }
+
+        //carga la table
+        table.Clear();
+        foreach (var item in nodes.nodes) {
+            table.Add(item.key, item.texts[idx]);
+        }
     }
 
     public string LocalizeString(string key) {
@@ -64,7 +99,7 @@ public class LocalizationService {
             string id = t.text;
             t.text = LocalizeString(id);
 
-            if (!localizationRefs.ContainsKey(t.GetInstanceID()) && t.text != id) {
+            if (!localizationRefs.ContainsKey(t.GetInstanceID())) {
                 localizationRefs[t.GetInstanceID()] = new LocalizedTextData(t, id);
             }
         }
@@ -72,6 +107,7 @@ public class LocalizationService {
 
     public void ChangeLang(SystemLanguage newLang) {
         currenLang = newLang;
+        LoadTable(newLang);
         ReLocalize();
     }
 
@@ -104,4 +140,6 @@ public class LocalizationService {
             this.id = id;
         }
     }
+
+
 }

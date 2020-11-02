@@ -1,0 +1,6 @@
+{
+	"nodes":[
+		{"key":"INITIAL_SCREE_TITLE","texts":["title","titulo","fr","ja","pr","it"]},
+		{"key":"INITIAL_SCREE_TIME","texts":["Time","Tiempo","fr","ja","pr","it"]}
+	]
+}
